@@ -483,8 +483,16 @@ Page {
                         anchors.fill: parent
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
-                        onClicked: root.trackDetailRequested(scanController, trackDelegate.index,
-                            root.format, root.currentPath())
+                        // Reverted to the existing trackInfoPopup rather
+                        // than trackDetailRequested (TrackDetailPage.qml)
+                        // -- that page renders completely broken in
+                        // practice (confirmed live, not just in its own
+                        // isolated QtQuickTest, which never actually
+                        // caught this). trackDetailRequested/
+                        // TrackDetailPage.qml are left in place, not
+                        // deleted -- Sebas wants the whole page
+                        // redesigned later, not this exact one patched.
+                        onClicked: trackInfoPopup.showFor(trackDelegate)
                     }
 
                     RowLayout {
